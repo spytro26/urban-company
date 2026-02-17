@@ -51,7 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  bankDetails: 'bankDetails',
+  Agent: 'Agent',
+  Admin: 'Admin',
+  subservice: 'subservice',
+  extraMaterial: 'extraMaterial',
+  Orders: 'Orders',
+  notification: 'notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,10 +79,109 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  email: 'email'
+  email: 'email',
+  password: 'password',
+  address: 'address',
+  pin: 'pin',
+  profilepic: 'profilepic',
+  createdAt: 'createdAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const BankDetailsScalarFieldEnum = {
+  id: 'id',
+  accountNumber: 'accountNumber',
+  holderName: 'holderName',
+  ifscCode: 'ifscCode',
+  bankName: 'bankName',
+  agentId: 'agentId',
+  createdAt: 'createdAt'
+} as const
+
+export type BankDetailsScalarFieldEnum = (typeof BankDetailsScalarFieldEnum)[keyof typeof BankDetailsScalarFieldEnum]
+
+
+export const AgentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  type: 'type',
+  email: 'email',
+  isVerified: 'isVerified',
+  isAvailable: 'isAvailable',
+  rating: 'rating',
+  address: 'address',
+  pin: 'pin',
+  password: 'password',
+  profilepic: 'profilepic',
+  id_proof: 'id_proof',
+  address_proof: 'address_proof',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentScalarFieldEnum = (typeof AgentScalarFieldEnum)[keyof typeof AgentScalarFieldEnum]
+
+
+export const AdminScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  createdAt: 'createdAt'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const SubserviceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type SubserviceScalarFieldEnum = (typeof SubserviceScalarFieldEnum)[keyof typeof SubserviceScalarFieldEnum]
+
+
+export const ExtraMaterialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  quantity: 'quantity',
+  price: 'price',
+  description: 'description',
+  createdAt: 'createdAt',
+  ordersId: 'ordersId'
+} as const
+
+export type ExtraMaterialScalarFieldEnum = (typeof ExtraMaterialScalarFieldEnum)[keyof typeof ExtraMaterialScalarFieldEnum]
+
+
+export const OrdersScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  mode: 'mode',
+  status: 'status',
+  serviceCharge: 'serviceCharge',
+  gst: 'gst',
+  servicetime: 'servicetime',
+  createdAt: 'createdAt',
+  agentId: 'agentId'
+} as const
+
+export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  message: 'message',
+  description: 'description',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -92,4 +198,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

@@ -9,7 +9,127 @@ datasource db {
   // Note: No 'url' field here anymore! It's in prisma.config.ts
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+enum status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
 }
+
+
+enum payment {
+  COD
+  ONLINE
+}
+
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  address   String
+  pin       String
+  order    Orders[]
+  profilepic String?
+  notifications notification[]
+
+  createdAt DateTime @default(now())
+}
+
+model bankDetails {
+  id        Int      @id @default(autoincrement())
+  accountNumber String
+  holderName   String
+  ifscCode     String
+  bankName     String
+  agentId      Int @unique
+  agent        Agent? @relation(fields: [agentId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+
+
+
+model Agent {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type     String
+  email     String   @unique
+  isVerified Boolean  @default(false)
+  isAvailable Boolean  @default(true)
+  rating    Float?   @default(0)
+  
+  address   String
+  pin       String
+  password  String
+  orders    Orders[]
+  bankDetails bankDetails?
+  profilepic String?
+  id_proof String?
+  address_proof String?
+
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+
+  createdAt DateTime @default(now())
+}
+
+model subservice {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float?
+  description String?
+  createdAt DateTime @default(now())
+}
+
+
+model extraMaterial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  quantity  Int
+  price     Float?
+  description String?
+  createdAt DateTime @default(now())
+   ordersId Int?
+
+  orders Orders? @relation(fields: [ordersId], references: [id])
+ 
+}
+
+
+model Orders {
+id       Int    @id @default(autoincrement())
+userId   Int
+user     User @relation(fields: [userId], references: [id])
+
+mode    payment
+status  status @default(PENDING)
+serviceCharge Float
+gst Float?
+servicetime  DateTime
+createdAt DateTime @default(now())
+agentId Int?
+agent   Agent? @relation(fields: [agentId], references: [id])
+extraMaterial extraMaterial[]
+@@index([agentId])
+@@index([status])
+@@index([userId])
+
+}
+
+model notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User @relation(fields: [userId], references: [id])
+  message   String
+  description String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+

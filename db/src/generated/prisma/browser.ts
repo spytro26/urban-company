@@ -22,3 +22,38 @@ export * from './enums.ts';
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model bankDetails
+ * 
+ */
+export type bankDetails = Prisma.bankDetailsModel
+/**
+ * Model Agent
+ * 
+ */
+export type Agent = Prisma.AgentModel
+/**
+ * Model Admin
+ * 
+ */
+export type Admin = Prisma.AdminModel
+/**
+ * Model subservice
+ * 
+ */
+export type subservice = Prisma.subserviceModel
+/**
+ * Model extraMaterial
+ * 
+ */
+export type extraMaterial = Prisma.extraMaterialModel
+/**
+ * Model Orders
+ * 
+ */
+export type Orders = Prisma.OrdersModel
+/**
+ * Model notification
+ * 
+ */
+export type notification = Prisma.notificationModel
