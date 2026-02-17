@@ -1,0 +1,15 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma" // You must specify an output path
+}
+
+datasource db {
+  provider = "postgresql"
+  // Note: No 'url' field here anymore! It's in prisma.config.ts
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+}
