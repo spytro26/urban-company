@@ -17,8 +17,13 @@ export function userMiddleware(
 
   const token = authHeader.split(" ")[1];
 
+  if (!token) {
+    res.status(401).json({ message: "Authorization token missing" });
+    return;
+  }
+
   try {
-    const decoded = jwt.verify(token, env.JWT_USER_SECRET) as JwtPayload;
+    const decoded = jwt.verify(token, env.JWT_USER_SECRET) as unknown as JwtPayload;
     req.user = decoded;
     next();
   } catch {

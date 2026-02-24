@@ -336,7 +336,7 @@ export type OrdersScalarWhereWithAggregatesInput = {
 
 export type OrdersCreateInput = {
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -350,7 +350,7 @@ export type OrdersUncheckedCreateInput = {
   id?: number
   userId: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -388,7 +388,7 @@ export type OrdersCreateManyInput = {
   id?: number
   userId: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -602,7 +602,7 @@ export type FloatFieldUpdateOperationsInput = {
 
 export type OrdersCreateWithoutUserInput = {
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -614,7 +614,7 @@ export type OrdersCreateWithoutUserInput = {
 export type OrdersUncheckedCreateWithoutUserInput = {
   id?: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -666,7 +666,7 @@ export type OrdersScalarWhereInput = {
 
 export type OrdersCreateWithoutAgentInput = {
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -679,7 +679,7 @@ export type OrdersUncheckedCreateWithoutAgentInput = {
   id?: number
   userId: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -715,7 +715,7 @@ export type OrdersUpdateManyWithWhereWithoutAgentInput = {
 
 export type OrdersCreateWithoutExtraMaterialInput = {
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -728,7 +728,7 @@ export type OrdersUncheckedCreateWithoutExtraMaterialInput = {
   id?: number
   userId: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -778,7 +778,7 @@ export type OrdersUncheckedUpdateWithoutExtraMaterialInput = {
 export type OrdersCreateManyUserInput = {
   id?: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string
@@ -824,7 +824,7 @@ export type OrdersCreateManyAgentInput = {
   id?: number
   userId: number
   mode: $Enums.payment
-  status: $Enums.status
+  status?: $Enums.status
   serviceCharge: number
   gst?: number | null
   servicetime: Date | string

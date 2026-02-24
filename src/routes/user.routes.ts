@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { prisma } from "../../db/index.ts";
 
-import { use } from "react";
 const router = Router();
 
 // Placeholder route for user-related operations
@@ -44,7 +43,8 @@ router.get("/orders",  async (req, res) => {
             mode,
             serviceCharge,
             gst,
-            servicetime
+            servicetime,
+            status: "PENDING"
         }
     });
 
