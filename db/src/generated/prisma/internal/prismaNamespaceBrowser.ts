@@ -57,7 +57,9 @@ export const ModelName = {
   Admin: 'Admin',
   subservice: 'subservice',
   extraMaterial: 'extraMaterial',
+  OrderGroup: 'OrderGroup',
   Orders: 'Orders',
+  Payment: 'Payment',
   notification: 'notification'
 } as const
 
@@ -150,26 +152,53 @@ export const ExtraMaterialScalarFieldEnum = {
   quantity: 'quantity',
   price: 'price',
   description: 'description',
-  createdAt: 'createdAt',
-  ordersId: 'ordersId'
+  groupId: 'groupId',
+  addedByAgentId: 'addedByAgentId',
+  createdAt: 'createdAt'
 } as const
 
 export type ExtraMaterialScalarFieldEnum = (typeof ExtraMaterialScalarFieldEnum)[keyof typeof ExtraMaterialScalarFieldEnum]
 
 
-export const OrdersScalarFieldEnum = {
+export const OrderGroupScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  mode: 'mode',
   status: 'status',
-  serviceCharge: 'serviceCharge',
-  gst: 'gst',
-  servicetime: 'servicetime',
+  paymentStatus: 'paymentStatus',
+  name: 'name',
+  totalPrice: 'totalPrice',
+  description: 'description',
   createdAt: 'createdAt',
+  servicetime: 'servicetime',
   agentId: 'agentId'
 } as const
 
+export type OrderGroupScalarFieldEnum = (typeof OrderGroupScalarFieldEnum)[keyof typeof OrderGroupScalarFieldEnum]
+
+
+export const OrdersScalarFieldEnum = {
+  id: 'id',
+  subserviceId: 'subserviceId',
+  groupId: 'groupId',
+  serviceCharge: 'serviceCharge',
+  gst: 'gst',
+  createdAt: 'createdAt'
+} as const
+
 export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  amount: 'amount',
+  method: 'method',
+  transactionId: 'transactionId',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const NotificationScalarFieldEnum = {

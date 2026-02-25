@@ -30,14 +30,16 @@ export type ExtraMaterialAvgAggregateOutputType = {
   id: number | null
   quantity: number | null
   price: number | null
-  ordersId: number | null
+  groupId: number | null
+  addedByAgentId: number | null
 }
 
 export type ExtraMaterialSumAggregateOutputType = {
   id: number | null
   quantity: number | null
   price: number | null
-  ordersId: number | null
+  groupId: number | null
+  addedByAgentId: number | null
 }
 
 export type ExtraMaterialMinAggregateOutputType = {
@@ -46,8 +48,9 @@ export type ExtraMaterialMinAggregateOutputType = {
   quantity: number | null
   price: number | null
   description: string | null
+  groupId: number | null
+  addedByAgentId: number | null
   createdAt: Date | null
-  ordersId: number | null
 }
 
 export type ExtraMaterialMaxAggregateOutputType = {
@@ -56,8 +59,9 @@ export type ExtraMaterialMaxAggregateOutputType = {
   quantity: number | null
   price: number | null
   description: string | null
+  groupId: number | null
+  addedByAgentId: number | null
   createdAt: Date | null
-  ordersId: number | null
 }
 
 export type ExtraMaterialCountAggregateOutputType = {
@@ -66,8 +70,9 @@ export type ExtraMaterialCountAggregateOutputType = {
   quantity: number
   price: number
   description: number
+  groupId: number
+  addedByAgentId: number
   createdAt: number
-  ordersId: number
   _all: number
 }
 
@@ -76,14 +81,16 @@ export type ExtraMaterialAvgAggregateInputType = {
   id?: true
   quantity?: true
   price?: true
-  ordersId?: true
+  groupId?: true
+  addedByAgentId?: true
 }
 
 export type ExtraMaterialSumAggregateInputType = {
   id?: true
   quantity?: true
   price?: true
-  ordersId?: true
+  groupId?: true
+  addedByAgentId?: true
 }
 
 export type ExtraMaterialMinAggregateInputType = {
@@ -92,8 +99,9 @@ export type ExtraMaterialMinAggregateInputType = {
   quantity?: true
   price?: true
   description?: true
+  groupId?: true
+  addedByAgentId?: true
   createdAt?: true
-  ordersId?: true
 }
 
 export type ExtraMaterialMaxAggregateInputType = {
@@ -102,8 +110,9 @@ export type ExtraMaterialMaxAggregateInputType = {
   quantity?: true
   price?: true
   description?: true
+  groupId?: true
+  addedByAgentId?: true
   createdAt?: true
-  ordersId?: true
 }
 
 export type ExtraMaterialCountAggregateInputType = {
@@ -112,8 +121,9 @@ export type ExtraMaterialCountAggregateInputType = {
   quantity?: true
   price?: true
   description?: true
+  groupId?: true
+  addedByAgentId?: true
   createdAt?: true
-  ordersId?: true
   _all?: true
 }
 
@@ -207,10 +217,11 @@ export type ExtraMaterialGroupByOutputType = {
   id: number
   name: string
   quantity: number
-  price: number | null
+  price: number
   description: string | null
+  groupId: number
+  addedByAgentId: number
   createdAt: Date
-  ordersId: number | null
   _count: ExtraMaterialCountAggregateOutputType | null
   _avg: ExtraMaterialAvgAggregateOutputType | null
   _sum: ExtraMaterialSumAggregateOutputType | null
@@ -240,22 +251,26 @@ export type extraMaterialWhereInput = {
   id?: Prisma.IntFilter<"extraMaterial"> | number
   name?: Prisma.StringFilter<"extraMaterial"> | string
   quantity?: Prisma.IntFilter<"extraMaterial"> | number
-  price?: Prisma.FloatNullableFilter<"extraMaterial"> | number | null
+  price?: Prisma.FloatFilter<"extraMaterial"> | number
   description?: Prisma.StringNullableFilter<"extraMaterial"> | string | null
+  groupId?: Prisma.IntFilter<"extraMaterial"> | number
+  addedByAgentId?: Prisma.IntFilter<"extraMaterial"> | number
   createdAt?: Prisma.DateTimeFilter<"extraMaterial"> | Date | string
-  ordersId?: Prisma.IntNullableFilter<"extraMaterial"> | number | null
-  orders?: Prisma.XOR<Prisma.OrdersNullableScalarRelationFilter, Prisma.OrdersWhereInput> | null
+  orderGroup?: Prisma.XOR<Prisma.OrderGroupScalarRelationFilter, Prisma.OrderGroupWhereInput>
+  addedByAgent?: Prisma.XOR<Prisma.AgentScalarRelationFilter, Prisma.AgentWhereInput>
 }
 
 export type extraMaterialOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
+  price?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrderInput | Prisma.SortOrder
-  orders?: Prisma.OrdersOrderByWithRelationInput
+  orderGroup?: Prisma.OrderGroupOrderByWithRelationInput
+  addedByAgent?: Prisma.AgentOrderByWithRelationInput
 }
 
 export type extraMaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -265,21 +280,24 @@ export type extraMaterialWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.extraMaterialWhereInput | Prisma.extraMaterialWhereInput[]
   name?: Prisma.StringFilter<"extraMaterial"> | string
   quantity?: Prisma.IntFilter<"extraMaterial"> | number
-  price?: Prisma.FloatNullableFilter<"extraMaterial"> | number | null
+  price?: Prisma.FloatFilter<"extraMaterial"> | number
   description?: Prisma.StringNullableFilter<"extraMaterial"> | string | null
+  groupId?: Prisma.IntFilter<"extraMaterial"> | number
+  addedByAgentId?: Prisma.IntFilter<"extraMaterial"> | number
   createdAt?: Prisma.DateTimeFilter<"extraMaterial"> | Date | string
-  ordersId?: Prisma.IntNullableFilter<"extraMaterial"> | number | null
-  orders?: Prisma.XOR<Prisma.OrdersNullableScalarRelationFilter, Prisma.OrdersWhereInput> | null
+  orderGroup?: Prisma.XOR<Prisma.OrderGroupScalarRelationFilter, Prisma.OrderGroupWhereInput>
+  addedByAgent?: Prisma.XOR<Prisma.AgentScalarRelationFilter, Prisma.AgentWhereInput>
 }, "id">
 
 export type extraMaterialOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrderInput | Prisma.SortOrder
+  price?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.extraMaterialCountOrderByAggregateInput
   _avg?: Prisma.extraMaterialAvgOrderByAggregateInput
   _max?: Prisma.extraMaterialMaxOrderByAggregateInput
@@ -294,64 +312,70 @@ export type extraMaterialScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"extraMaterial"> | number
   name?: Prisma.StringWithAggregatesFilter<"extraMaterial"> | string
   quantity?: Prisma.IntWithAggregatesFilter<"extraMaterial"> | number
-  price?: Prisma.FloatNullableWithAggregatesFilter<"extraMaterial"> | number | null
+  price?: Prisma.FloatWithAggregatesFilter<"extraMaterial"> | number
   description?: Prisma.StringNullableWithAggregatesFilter<"extraMaterial"> | string | null
+  groupId?: Prisma.IntWithAggregatesFilter<"extraMaterial"> | number
+  addedByAgentId?: Prisma.IntWithAggregatesFilter<"extraMaterial"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"extraMaterial"> | Date | string
-  ordersId?: Prisma.IntNullableWithAggregatesFilter<"extraMaterial"> | number | null
 }
 
 export type extraMaterialCreateInput = {
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
   createdAt?: Date | string
-  orders?: Prisma.OrdersCreateNestedOneWithoutExtraMaterialInput
+  orderGroup: Prisma.OrderGroupCreateNestedOneWithoutExtraMaterialsInput
+  addedByAgent: Prisma.AgentCreateNestedOneWithoutExtraMaterialsInput
 }
 
 export type extraMaterialUncheckedCreateInput = {
   id?: number
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
+  groupId: number
+  addedByAgentId: number
   createdAt?: Date | string
-  ordersId?: number | null
 }
 
 export type extraMaterialUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrdersUpdateOneWithoutExtraMaterialNestedInput
+  orderGroup?: Prisma.OrderGroupUpdateOneRequiredWithoutExtraMaterialsNestedInput
+  addedByAgent?: Prisma.AgentUpdateOneRequiredWithoutExtraMaterialsNestedInput
 }
 
 export type extraMaterialUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
+  addedByAgentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ordersId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type extraMaterialCreateManyInput = {
   id?: number
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
+  groupId: number
+  addedByAgentId: number
   createdAt?: Date | string
-  ordersId?: number | null
 }
 
 export type extraMaterialUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -360,54 +384,11 @@ export type extraMaterialUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
+  addedByAgentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ordersId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-}
-
-export type extraMaterialCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrder
-}
-
-export type extraMaterialAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrder
-}
-
-export type extraMaterialMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrder
-}
-
-export type extraMaterialMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrder
-}
-
-export type extraMaterialSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  quantity?: Prisma.SortOrder
-  price?: Prisma.SortOrder
-  ordersId?: Prisma.SortOrder
 }
 
 export type ExtraMaterialListRelationFilter = {
@@ -420,97 +401,190 @@ export type extraMaterialOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
+export type extraMaterialCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type extraMaterialAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
+}
+
+export type extraMaterialMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type extraMaterialMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type extraMaterialSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+  addedByAgentId?: Prisma.SortOrder
+}
+
+export type extraMaterialCreateNestedManyWithoutAddedByAgentInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput> | Prisma.extraMaterialCreateWithoutAddedByAgentInput[] | Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput | Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput[]
+  createMany?: Prisma.extraMaterialCreateManyAddedByAgentInputEnvelope
+  connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+}
+
+export type extraMaterialUncheckedCreateNestedManyWithoutAddedByAgentInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput> | Prisma.extraMaterialCreateWithoutAddedByAgentInput[] | Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput | Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput[]
+  createMany?: Prisma.extraMaterialCreateManyAddedByAgentInputEnvelope
+  connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+}
+
+export type extraMaterialUpdateManyWithoutAddedByAgentNestedInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput> | Prisma.extraMaterialCreateWithoutAddedByAgentInput[] | Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput | Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput[]
+  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutAddedByAgentInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutAddedByAgentInput[]
+  createMany?: Prisma.extraMaterialCreateManyAddedByAgentInputEnvelope
+  set?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  disconnect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  delete?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutAddedByAgentInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutAddedByAgentInput[]
+  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutAddedByAgentInput | Prisma.extraMaterialUpdateManyWithWhereWithoutAddedByAgentInput[]
+  deleteMany?: Prisma.extraMaterialScalarWhereInput | Prisma.extraMaterialScalarWhereInput[]
+}
+
+export type extraMaterialUncheckedUpdateManyWithoutAddedByAgentNestedInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput> | Prisma.extraMaterialCreateWithoutAddedByAgentInput[] | Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput | Prisma.extraMaterialCreateOrConnectWithoutAddedByAgentInput[]
+  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutAddedByAgentInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutAddedByAgentInput[]
+  createMany?: Prisma.extraMaterialCreateManyAddedByAgentInputEnvelope
+  set?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  disconnect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  delete?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
+  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutAddedByAgentInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutAddedByAgentInput[]
+  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutAddedByAgentInput | Prisma.extraMaterialUpdateManyWithWhereWithoutAddedByAgentInput[]
+  deleteMany?: Prisma.extraMaterialScalarWhereInput | Prisma.extraMaterialScalarWhereInput[]
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
 }
 
-export type extraMaterialCreateNestedManyWithoutOrdersInput = {
-  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput> | Prisma.extraMaterialCreateWithoutOrdersInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrdersInput[]
-  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrdersInput | Prisma.extraMaterialCreateOrConnectWithoutOrdersInput[]
-  createMany?: Prisma.extraMaterialCreateManyOrdersInputEnvelope
+export type extraMaterialCreateNestedManyWithoutOrderGroupInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput> | Prisma.extraMaterialCreateWithoutOrderGroupInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput | Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput[]
+  createMany?: Prisma.extraMaterialCreateManyOrderGroupInputEnvelope
   connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
 }
 
-export type extraMaterialUncheckedCreateNestedManyWithoutOrdersInput = {
-  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput> | Prisma.extraMaterialCreateWithoutOrdersInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrdersInput[]
-  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrdersInput | Prisma.extraMaterialCreateOrConnectWithoutOrdersInput[]
-  createMany?: Prisma.extraMaterialCreateManyOrdersInputEnvelope
+export type extraMaterialUncheckedCreateNestedManyWithoutOrderGroupInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput> | Prisma.extraMaterialCreateWithoutOrderGroupInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput | Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput[]
+  createMany?: Prisma.extraMaterialCreateManyOrderGroupInputEnvelope
   connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
 }
 
-export type extraMaterialUpdateManyWithoutOrdersNestedInput = {
-  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput> | Prisma.extraMaterialCreateWithoutOrdersInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrdersInput[]
-  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrdersInput | Prisma.extraMaterialCreateOrConnectWithoutOrdersInput[]
-  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrdersInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrdersInput[]
-  createMany?: Prisma.extraMaterialCreateManyOrdersInputEnvelope
+export type extraMaterialUpdateManyWithoutOrderGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput> | Prisma.extraMaterialCreateWithoutOrderGroupInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput | Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput[]
+  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrderGroupInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrderGroupInput[]
+  createMany?: Prisma.extraMaterialCreateManyOrderGroupInputEnvelope
   set?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   disconnect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   delete?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
-  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrdersInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrdersInput[]
-  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutOrdersInput | Prisma.extraMaterialUpdateManyWithWhereWithoutOrdersInput[]
+  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrderGroupInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrderGroupInput[]
+  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutOrderGroupInput | Prisma.extraMaterialUpdateManyWithWhereWithoutOrderGroupInput[]
   deleteMany?: Prisma.extraMaterialScalarWhereInput | Prisma.extraMaterialScalarWhereInput[]
 }
 
-export type extraMaterialUncheckedUpdateManyWithoutOrdersNestedInput = {
-  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput> | Prisma.extraMaterialCreateWithoutOrdersInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrdersInput[]
-  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrdersInput | Prisma.extraMaterialCreateOrConnectWithoutOrdersInput[]
-  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrdersInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrdersInput[]
-  createMany?: Prisma.extraMaterialCreateManyOrdersInputEnvelope
+export type extraMaterialUncheckedUpdateManyWithoutOrderGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput> | Prisma.extraMaterialCreateWithoutOrderGroupInput[] | Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput[]
+  connectOrCreate?: Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput | Prisma.extraMaterialCreateOrConnectWithoutOrderGroupInput[]
+  upsert?: Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrderGroupInput | Prisma.extraMaterialUpsertWithWhereUniqueWithoutOrderGroupInput[]
+  createMany?: Prisma.extraMaterialCreateManyOrderGroupInputEnvelope
   set?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   disconnect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   delete?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
   connect?: Prisma.extraMaterialWhereUniqueInput | Prisma.extraMaterialWhereUniqueInput[]
-  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrdersInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrdersInput[]
-  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutOrdersInput | Prisma.extraMaterialUpdateManyWithWhereWithoutOrdersInput[]
+  update?: Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrderGroupInput | Prisma.extraMaterialUpdateWithWhereUniqueWithoutOrderGroupInput[]
+  updateMany?: Prisma.extraMaterialUpdateManyWithWhereWithoutOrderGroupInput | Prisma.extraMaterialUpdateManyWithWhereWithoutOrderGroupInput[]
   deleteMany?: Prisma.extraMaterialScalarWhereInput | Prisma.extraMaterialScalarWhereInput[]
 }
 
-export type extraMaterialCreateWithoutOrdersInput = {
+export type extraMaterialCreateWithoutAddedByAgentInput = {
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
   createdAt?: Date | string
+  orderGroup: Prisma.OrderGroupCreateNestedOneWithoutExtraMaterialsInput
 }
 
-export type extraMaterialUncheckedCreateWithoutOrdersInput = {
+export type extraMaterialUncheckedCreateWithoutAddedByAgentInput = {
   id?: number
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
+  groupId: number
   createdAt?: Date | string
 }
 
-export type extraMaterialCreateOrConnectWithoutOrdersInput = {
+export type extraMaterialCreateOrConnectWithoutAddedByAgentInput = {
   where: Prisma.extraMaterialWhereUniqueInput
-  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput>
 }
 
-export type extraMaterialCreateManyOrdersInputEnvelope = {
-  data: Prisma.extraMaterialCreateManyOrdersInput | Prisma.extraMaterialCreateManyOrdersInput[]
+export type extraMaterialCreateManyAddedByAgentInputEnvelope = {
+  data: Prisma.extraMaterialCreateManyAddedByAgentInput | Prisma.extraMaterialCreateManyAddedByAgentInput[]
   skipDuplicates?: boolean
 }
 
-export type extraMaterialUpsertWithWhereUniqueWithoutOrdersInput = {
+export type extraMaterialUpsertWithWhereUniqueWithoutAddedByAgentInput = {
   where: Prisma.extraMaterialWhereUniqueInput
-  update: Prisma.XOR<Prisma.extraMaterialUpdateWithoutOrdersInput, Prisma.extraMaterialUncheckedUpdateWithoutOrdersInput>
-  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrdersInput, Prisma.extraMaterialUncheckedCreateWithoutOrdersInput>
+  update: Prisma.XOR<Prisma.extraMaterialUpdateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedUpdateWithoutAddedByAgentInput>
+  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedCreateWithoutAddedByAgentInput>
 }
 
-export type extraMaterialUpdateWithWhereUniqueWithoutOrdersInput = {
+export type extraMaterialUpdateWithWhereUniqueWithoutAddedByAgentInput = {
   where: Prisma.extraMaterialWhereUniqueInput
-  data: Prisma.XOR<Prisma.extraMaterialUpdateWithoutOrdersInput, Prisma.extraMaterialUncheckedUpdateWithoutOrdersInput>
+  data: Prisma.XOR<Prisma.extraMaterialUpdateWithoutAddedByAgentInput, Prisma.extraMaterialUncheckedUpdateWithoutAddedByAgentInput>
 }
 
-export type extraMaterialUpdateManyWithWhereWithoutOrdersInput = {
+export type extraMaterialUpdateManyWithWhereWithoutAddedByAgentInput = {
   where: Prisma.extraMaterialScalarWhereInput
-  data: Prisma.XOR<Prisma.extraMaterialUpdateManyMutationInput, Prisma.extraMaterialUncheckedUpdateManyWithoutOrdersInput>
+  data: Prisma.XOR<Prisma.extraMaterialUpdateManyMutationInput, Prisma.extraMaterialUncheckedUpdateManyWithoutAddedByAgentInput>
 }
 
 export type extraMaterialScalarWhereInput = {
@@ -520,44 +594,133 @@ export type extraMaterialScalarWhereInput = {
   id?: Prisma.IntFilter<"extraMaterial"> | number
   name?: Prisma.StringFilter<"extraMaterial"> | string
   quantity?: Prisma.IntFilter<"extraMaterial"> | number
-  price?: Prisma.FloatNullableFilter<"extraMaterial"> | number | null
+  price?: Prisma.FloatFilter<"extraMaterial"> | number
   description?: Prisma.StringNullableFilter<"extraMaterial"> | string | null
+  groupId?: Prisma.IntFilter<"extraMaterial"> | number
+  addedByAgentId?: Prisma.IntFilter<"extraMaterial"> | number
   createdAt?: Prisma.DateTimeFilter<"extraMaterial"> | Date | string
-  ordersId?: Prisma.IntNullableFilter<"extraMaterial"> | number | null
 }
 
-export type extraMaterialCreateManyOrdersInput = {
+export type extraMaterialCreateWithoutOrderGroupInput = {
+  name: string
+  quantity: number
+  price: number
+  description?: string | null
+  createdAt?: Date | string
+  addedByAgent: Prisma.AgentCreateNestedOneWithoutExtraMaterialsInput
+}
+
+export type extraMaterialUncheckedCreateWithoutOrderGroupInput = {
   id?: number
   name: string
   quantity: number
-  price?: number | null
+  price: number
   description?: string | null
+  addedByAgentId: number
   createdAt?: Date | string
 }
 
-export type extraMaterialUpdateWithoutOrdersInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type extraMaterialCreateOrConnectWithoutOrderGroupInput = {
+  where: Prisma.extraMaterialWhereUniqueInput
+  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput>
 }
 
-export type extraMaterialUncheckedUpdateWithoutOrdersInput = {
+export type extraMaterialCreateManyOrderGroupInputEnvelope = {
+  data: Prisma.extraMaterialCreateManyOrderGroupInput | Prisma.extraMaterialCreateManyOrderGroupInput[]
+  skipDuplicates?: boolean
+}
+
+export type extraMaterialUpsertWithWhereUniqueWithoutOrderGroupInput = {
+  where: Prisma.extraMaterialWhereUniqueInput
+  update: Prisma.XOR<Prisma.extraMaterialUpdateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedUpdateWithoutOrderGroupInput>
+  create: Prisma.XOR<Prisma.extraMaterialCreateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedCreateWithoutOrderGroupInput>
+}
+
+export type extraMaterialUpdateWithWhereUniqueWithoutOrderGroupInput = {
+  where: Prisma.extraMaterialWhereUniqueInput
+  data: Prisma.XOR<Prisma.extraMaterialUpdateWithoutOrderGroupInput, Prisma.extraMaterialUncheckedUpdateWithoutOrderGroupInput>
+}
+
+export type extraMaterialUpdateManyWithWhereWithoutOrderGroupInput = {
+  where: Prisma.extraMaterialScalarWhereInput
+  data: Prisma.XOR<Prisma.extraMaterialUpdateManyMutationInput, Prisma.extraMaterialUncheckedUpdateManyWithoutOrderGroupInput>
+}
+
+export type extraMaterialCreateManyAddedByAgentInput = {
+  id?: number
+  name: string
+  quantity: number
+  price: number
+  description?: string | null
+  groupId: number
+  createdAt?: Date | string
+}
+
+export type extraMaterialUpdateWithoutAddedByAgentInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orderGroup?: Prisma.OrderGroupUpdateOneRequiredWithoutExtraMaterialsNestedInput
+}
+
+export type extraMaterialUncheckedUpdateWithoutAddedByAgentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type extraMaterialUncheckedUpdateManyWithoutOrdersInput = {
+export type extraMaterialUncheckedUpdateManyWithoutAddedByAgentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
-  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type extraMaterialCreateManyOrderGroupInput = {
+  id?: number
+  name: string
+  quantity: number
+  price: number
+  description?: string | null
+  addedByAgentId: number
+  createdAt?: Date | string
+}
+
+export type extraMaterialUpdateWithoutOrderGroupInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  addedByAgent?: Prisma.AgentUpdateOneRequiredWithoutExtraMaterialsNestedInput
+}
+
+export type extraMaterialUncheckedUpdateWithoutOrderGroupInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addedByAgentId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type extraMaterialUncheckedUpdateManyWithoutOrderGroupInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addedByAgentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -569,9 +732,11 @@ export type extraMaterialSelect<ExtArgs extends runtime.Types.Extensions.Interna
   quantity?: boolean
   price?: boolean
   description?: boolean
+  groupId?: boolean
+  addedByAgentId?: boolean
   createdAt?: boolean
-  ordersId?: boolean
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["extraMaterial"]>
 
 export type extraMaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -580,9 +745,11 @@ export type extraMaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   quantity?: boolean
   price?: boolean
   description?: boolean
+  groupId?: boolean
+  addedByAgentId?: boolean
   createdAt?: boolean
-  ordersId?: boolean
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["extraMaterial"]>
 
 export type extraMaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -591,9 +758,11 @@ export type extraMaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   quantity?: boolean
   price?: boolean
   description?: boolean
+  groupId?: boolean
+  addedByAgentId?: boolean
   createdAt?: boolean
-  ordersId?: boolean
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["extraMaterial"]>
 
 export type extraMaterialSelectScalar = {
@@ -602,34 +771,40 @@ export type extraMaterialSelectScalar = {
   quantity?: boolean
   price?: boolean
   description?: boolean
+  groupId?: boolean
+  addedByAgentId?: boolean
   createdAt?: boolean
-  ordersId?: boolean
 }
 
-export type extraMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "quantity" | "price" | "description" | "createdAt" | "ordersId", ExtArgs["result"]["extraMaterial"]>
+export type extraMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "quantity" | "price" | "description" | "groupId" | "addedByAgentId" | "createdAt", ExtArgs["result"]["extraMaterial"]>
 export type extraMaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }
 export type extraMaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }
 export type extraMaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  orders?: boolean | Prisma.extraMaterial$ordersArgs<ExtArgs>
+  orderGroup?: boolean | Prisma.OrderGroupDefaultArgs<ExtArgs>
+  addedByAgent?: boolean | Prisma.AgentDefaultArgs<ExtArgs>
 }
 
 export type $extraMaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "extraMaterial"
   objects: {
-    orders: Prisma.$OrdersPayload<ExtArgs> | null
+    orderGroup: Prisma.$OrderGroupPayload<ExtArgs>
+    addedByAgent: Prisma.$AgentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
     quantity: number
-    price: number | null
+    price: number
     description: string | null
+    groupId: number
+    addedByAgentId: number
     createdAt: Date
-    ordersId: number | null
   }, ExtArgs["result"]["extraMaterial"]>
   composites: {}
 }
@@ -1024,7 +1199,8 @@ readonly fields: extraMaterialFieldRefs;
  */
 export interface Prisma__extraMaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  orders<T extends Prisma.extraMaterial$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.extraMaterial$ordersArgs<ExtArgs>>): Prisma.Prisma__OrdersClient<runtime.Types.Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  orderGroup<T extends Prisma.OrderGroupDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderGroupDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderGroupClient<runtime.Types.Result.GetResult<Prisma.$OrderGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  addedByAgent<T extends Prisma.AgentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentDefaultArgs<ExtArgs>>): Prisma.Prisma__AgentClient<runtime.Types.Result.GetResult<Prisma.$AgentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1059,8 +1235,9 @@ export interface extraMaterialFieldRefs {
   readonly quantity: Prisma.FieldRef<"extraMaterial", 'Int'>
   readonly price: Prisma.FieldRef<"extraMaterial", 'Float'>
   readonly description: Prisma.FieldRef<"extraMaterial", 'String'>
+  readonly groupId: Prisma.FieldRef<"extraMaterial", 'Int'>
+  readonly addedByAgentId: Prisma.FieldRef<"extraMaterial", 'Int'>
   readonly createdAt: Prisma.FieldRef<"extraMaterial", 'DateTime'>
-  readonly ordersId: Prisma.FieldRef<"extraMaterial", 'Int'>
 }
     
 
@@ -1454,25 +1631,6 @@ export type extraMaterialDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many extraMaterials to delete.
    */
   limit?: number
-}
-
-/**
- * extraMaterial.orders
- */
-export type extraMaterial$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Orders
-   */
-  select?: Prisma.OrdersSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Orders
-   */
-  omit?: Prisma.OrdersOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrdersInclude<ExtArgs> | null
-  where?: Prisma.OrdersWhereInput
 }
 
 /**

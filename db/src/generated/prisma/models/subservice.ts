@@ -220,6 +220,7 @@ export type subserviceWhereInput = {
   price?: Prisma.FloatNullableFilter<"subservice"> | number | null
   description?: Prisma.StringNullableFilter<"subservice"> | string | null
   createdAt?: Prisma.DateTimeFilter<"subservice"> | Date | string
+  orders?: Prisma.OrdersListRelationFilter
 }
 
 export type subserviceOrderByWithRelationInput = {
@@ -228,6 +229,7 @@ export type subserviceOrderByWithRelationInput = {
   price?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  orders?: Prisma.OrdersOrderByRelationAggregateInput
 }
 
 export type subserviceWhereUniqueInput = Prisma.AtLeast<{
@@ -239,6 +241,7 @@ export type subserviceWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.FloatNullableFilter<"subservice"> | number | null
   description?: Prisma.StringNullableFilter<"subservice"> | string | null
   createdAt?: Prisma.DateTimeFilter<"subservice"> | Date | string
+  orders?: Prisma.OrdersListRelationFilter
 }, "id">
 
 export type subserviceOrderByWithAggregationInput = {
@@ -270,6 +273,7 @@ export type subserviceCreateInput = {
   price?: number | null
   description?: string | null
   createdAt?: Date | string
+  orders?: Prisma.OrdersCreateNestedManyWithoutSubserviceInput
 }
 
 export type subserviceUncheckedCreateInput = {
@@ -278,6 +282,7 @@ export type subserviceUncheckedCreateInput = {
   price?: number | null
   description?: string | null
   createdAt?: Date | string
+  orders?: Prisma.OrdersUncheckedCreateNestedManyWithoutSubserviceInput
 }
 
 export type subserviceUpdateInput = {
@@ -285,6 +290,7 @@ export type subserviceUpdateInput = {
   price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orders?: Prisma.OrdersUpdateManyWithoutSubserviceNestedInput
 }
 
 export type subserviceUncheckedUpdateInput = {
@@ -293,6 +299,7 @@ export type subserviceUncheckedUpdateInput = {
   price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orders?: Prisma.OrdersUncheckedUpdateManyWithoutSubserviceNestedInput
 }
 
 export type subserviceCreateManyInput = {
@@ -352,6 +359,100 @@ export type subserviceSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
 }
 
+export type SubserviceScalarRelationFilter = {
+  is?: Prisma.subserviceWhereInput
+  isNot?: Prisma.subserviceWhereInput
+}
+
+export type subserviceCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.subserviceCreateWithoutOrdersInput, Prisma.subserviceUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.subserviceCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.subserviceWhereUniqueInput
+}
+
+export type subserviceUpdateOneRequiredWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.subserviceCreateWithoutOrdersInput, Prisma.subserviceUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.subserviceCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.subserviceUpsertWithoutOrdersInput
+  connect?: Prisma.subserviceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.subserviceUpdateToOneWithWhereWithoutOrdersInput, Prisma.subserviceUpdateWithoutOrdersInput>, Prisma.subserviceUncheckedUpdateWithoutOrdersInput>
+}
+
+export type subserviceCreateWithoutOrdersInput = {
+  name: string
+  price?: number | null
+  description?: string | null
+  createdAt?: Date | string
+}
+
+export type subserviceUncheckedCreateWithoutOrdersInput = {
+  id?: number
+  name: string
+  price?: number | null
+  description?: string | null
+  createdAt?: Date | string
+}
+
+export type subserviceCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.subserviceWhereUniqueInput
+  create: Prisma.XOR<Prisma.subserviceCreateWithoutOrdersInput, Prisma.subserviceUncheckedCreateWithoutOrdersInput>
+}
+
+export type subserviceUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.subserviceUpdateWithoutOrdersInput, Prisma.subserviceUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.subserviceCreateWithoutOrdersInput, Prisma.subserviceUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.subserviceWhereInput
+}
+
+export type subserviceUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.subserviceWhereInput
+  data: Prisma.XOR<Prisma.subserviceUpdateWithoutOrdersInput, Prisma.subserviceUncheckedUpdateWithoutOrdersInput>
+}
+
+export type subserviceUpdateWithoutOrdersInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type subserviceUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type SubserviceCountOutputType
+ */
+
+export type SubserviceCountOutputType = {
+  orders: number
+}
+
+export type SubserviceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  orders?: boolean | SubserviceCountOutputTypeCountOrdersArgs
+}
+
+/**
+ * SubserviceCountOutputType without action
+ */
+export type SubserviceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubserviceCountOutputType
+   */
+  select?: Prisma.SubserviceCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SubserviceCountOutputType without action
+ */
+export type SubserviceCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrdersWhereInput
+}
 
 
 export type subserviceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -360,6 +461,8 @@ export type subserviceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   price?: boolean
   description?: boolean
   createdAt?: boolean
+  orders?: boolean | Prisma.subservice$ordersArgs<ExtArgs>
+  _count?: boolean | Prisma.SubserviceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subservice"]>
 
 export type subserviceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -387,10 +490,18 @@ export type subserviceSelectScalar = {
 }
 
 export type subserviceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "price" | "description" | "createdAt", ExtArgs["result"]["subservice"]>
+export type subserviceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  orders?: boolean | Prisma.subservice$ordersArgs<ExtArgs>
+  _count?: boolean | Prisma.SubserviceCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type subserviceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type subserviceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $subservicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "subservice"
-  objects: {}
+  objects: {
+    orders: Prisma.$OrdersPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
@@ -791,6 +902,7 @@ readonly fields: subserviceFieldRefs;
  */
 export interface Prisma__subserviceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  orders<T extends Prisma.subservice$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subservice$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -842,6 +954,10 @@ export type subserviceFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * Filter, which subservice to fetch.
    */
   where: Prisma.subserviceWhereUniqueInput
@@ -860,6 +976,10 @@ export type subserviceFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * Filter, which subservice to fetch.
    */
   where: Prisma.subserviceWhereUniqueInput
@@ -877,6 +997,10 @@ export type subserviceFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the subservice
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
   /**
    * Filter, which subservice to fetch.
    */
@@ -926,6 +1050,10 @@ export type subserviceFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * Filter, which subservice to fetch.
    */
   where?: Prisma.subserviceWhereInput
@@ -974,6 +1102,10 @@ export type subserviceFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * Filter, which subservices to fetch.
    */
   where?: Prisma.subserviceWhereInput
@@ -1016,6 +1148,10 @@ export type subserviceCreateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the subservice
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
   /**
    * The data needed to create a subservice.
    */
@@ -1064,6 +1200,10 @@ export type subserviceUpdateArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the subservice
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
   /**
    * The data needed to update a subservice.
    */
@@ -1131,6 +1271,10 @@ export type subserviceUpsertArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * The filter to search for the subservice to update in case it exists.
    */
   where: Prisma.subserviceWhereUniqueInput
@@ -1157,6 +1301,10 @@ export type subserviceDeleteArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
+  /**
    * Filter which subservice to delete.
    */
   where: Prisma.subserviceWhereUniqueInput
@@ -1177,6 +1325,30 @@ export type subserviceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * subservice.orders
+ */
+export type subservice$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Orders
+   */
+  select?: Prisma.OrdersSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Orders
+   */
+  omit?: Prisma.OrdersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrdersInclude<ExtArgs> | null
+  where?: Prisma.OrdersWhereInput
+  orderBy?: Prisma.OrdersOrderByWithRelationInput | Prisma.OrdersOrderByWithRelationInput[]
+  cursor?: Prisma.OrdersWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrdersScalarFieldEnum | Prisma.OrdersScalarFieldEnum[]
+}
+
+/**
  * subservice without action
  */
 export type subserviceDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1188,4 +1360,8 @@ export type subserviceDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the subservice
    */
   omit?: Prisma.subserviceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.subserviceInclude<ExtArgs> | null
 }

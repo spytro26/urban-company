@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { prisma } from "../../db/index.ts";
-import { env } from "../config/env.ts";
+import { prisma } from "../../../db/index.ts";
+import { env } from "../../config/env.ts";
 
 export async function registerUser(req: Request, res: Response): Promise<void> {
   const {

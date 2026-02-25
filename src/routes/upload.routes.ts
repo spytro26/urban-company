@@ -6,7 +6,7 @@ import {
   uploadUserProfilePic,
   uploadAgentProfilePic,
   uploadAgentDocuments,
-} from "../controllers/upload.controller.ts";
+} from "../controllers/auth/upload.controller.ts";
 
 const router = Router();
 

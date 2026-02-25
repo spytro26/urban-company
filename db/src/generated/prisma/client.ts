@@ -70,10 +70,20 @@ export type subservice = Prisma.subserviceModel
  */
 export type extraMaterial = Prisma.extraMaterialModel
 /**
+ * Model OrderGroup
+ * 
+ */
+export type OrderGroup = Prisma.OrderGroupModel
+/**
  * Model Orders
  * 
  */
 export type Orders = Prisma.OrdersModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
 /**
  * Model notification
  * 

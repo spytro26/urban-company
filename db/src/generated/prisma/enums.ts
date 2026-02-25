@@ -19,9 +19,19 @@ export const status = {
 export type status = (typeof status)[keyof typeof status]
 
 
-export const payment = {
-  COD: 'COD',
+export const paymentMethod = {
+  CASH: 'CASH',
   ONLINE: 'ONLINE'
 } as const
 
-export type payment = (typeof payment)[keyof typeof payment]
+export type paymentMethod = (typeof paymentMethod)[keyof typeof paymentMethod]
+
+
+export const paymentStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  PARTIALLY_PAID: 'PARTIALLY_PAID',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type paymentStatus = (typeof paymentStatus)[keyof typeof paymentStatus]

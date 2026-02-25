@@ -292,8 +292,9 @@ export type AgentWhereInput = {
   id_proof?: Prisma.StringNullableFilter<"Agent"> | string | null
   address_proof?: Prisma.StringNullableFilter<"Agent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
-  orders?: Prisma.OrdersListRelationFilter
+  orders?: Prisma.OrderGroupListRelationFilter
   bankDetails?: Prisma.XOR<Prisma.BankDetailsNullableScalarRelationFilter, Prisma.bankDetailsWhereInput> | null
+  extraMaterials?: Prisma.ExtraMaterialListRelationFilter
 }
 
 export type AgentOrderByWithRelationInput = {
@@ -311,8 +312,9 @@ export type AgentOrderByWithRelationInput = {
   id_proof?: Prisma.SortOrderInput | Prisma.SortOrder
   address_proof?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  orders?: Prisma.OrdersOrderByRelationAggregateInput
+  orders?: Prisma.OrderGroupOrderByRelationAggregateInput
   bankDetails?: Prisma.bankDetailsOrderByWithRelationInput
+  extraMaterials?: Prisma.extraMaterialOrderByRelationAggregateInput
 }
 
 export type AgentWhereUniqueInput = Prisma.AtLeast<{
@@ -333,8 +335,9 @@ export type AgentWhereUniqueInput = Prisma.AtLeast<{
   id_proof?: Prisma.StringNullableFilter<"Agent"> | string | null
   address_proof?: Prisma.StringNullableFilter<"Agent"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Agent"> | Date | string
-  orders?: Prisma.OrdersListRelationFilter
+  orders?: Prisma.OrderGroupListRelationFilter
   bankDetails?: Prisma.XOR<Prisma.BankDetailsNullableScalarRelationFilter, Prisma.bankDetailsWhereInput> | null
+  extraMaterials?: Prisma.ExtraMaterialListRelationFilter
 }, "id" | "email">
 
 export type AgentOrderByWithAggregationInput = {
@@ -393,8 +396,9 @@ export type AgentCreateInput = {
   id_proof?: string | null
   address_proof?: string | null
   createdAt?: Date | string
-  orders?: Prisma.OrdersCreateNestedManyWithoutAgentInput
+  orders?: Prisma.OrderGroupCreateNestedManyWithoutAgentInput
   bankDetails?: Prisma.bankDetailsCreateNestedOneWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentUncheckedCreateInput = {
@@ -412,8 +416,9 @@ export type AgentUncheckedCreateInput = {
   id_proof?: string | null
   address_proof?: string | null
   createdAt?: Date | string
-  orders?: Prisma.OrdersUncheckedCreateNestedManyWithoutAgentInput
+  orders?: Prisma.OrderGroupUncheckedCreateNestedManyWithoutAgentInput
   bankDetails?: Prisma.bankDetailsUncheckedCreateNestedOneWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialUncheckedCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentUpdateInput = {
@@ -430,8 +435,9 @@ export type AgentUpdateInput = {
   id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrdersUpdateManyWithoutAgentNestedInput
+  orders?: Prisma.OrderGroupUpdateManyWithoutAgentNestedInput
   bankDetails?: Prisma.bankDetailsUpdateOneWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUpdateManyWithoutAddedByAgentNestedInput
 }
 
 export type AgentUncheckedUpdateInput = {
@@ -449,8 +455,9 @@ export type AgentUncheckedUpdateInput = {
   id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrdersUncheckedUpdateManyWithoutAgentNestedInput
+  orders?: Prisma.OrderGroupUncheckedUpdateManyWithoutAgentNestedInput
   bankDetails?: Prisma.bankDetailsUncheckedUpdateOneWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUncheckedUpdateManyWithoutAddedByAgentNestedInput
 }
 
 export type AgentCreateManyInput = {
@@ -569,6 +576,11 @@ export type AgentSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
 }
 
+export type AgentScalarRelationFilter = {
+  is?: Prisma.AgentWhereInput
+  isNot?: Prisma.AgentWhereInput
+}
+
 export type AgentCreateNestedOneWithoutBankDetailsInput = {
   create?: Prisma.XOR<Prisma.AgentCreateWithoutBankDetailsInput, Prisma.AgentUncheckedCreateWithoutBankDetailsInput>
   connectOrCreate?: Prisma.AgentCreateOrConnectWithoutBankDetailsInput
@@ -595,6 +607,20 @@ export type NullableFloatFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type AgentCreateNestedOneWithoutExtraMaterialsInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutExtraMaterialsInput, Prisma.AgentUncheckedCreateWithoutExtraMaterialsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutExtraMaterialsInput
+  connect?: Prisma.AgentWhereUniqueInput
+}
+
+export type AgentUpdateOneRequiredWithoutExtraMaterialsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgentCreateWithoutExtraMaterialsInput, Prisma.AgentUncheckedCreateWithoutExtraMaterialsInput>
+  connectOrCreate?: Prisma.AgentCreateOrConnectWithoutExtraMaterialsInput
+  upsert?: Prisma.AgentUpsertWithoutExtraMaterialsInput
+  connect?: Prisma.AgentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgentUpdateToOneWithWhereWithoutExtraMaterialsInput, Prisma.AgentUpdateWithoutExtraMaterialsInput>, Prisma.AgentUncheckedUpdateWithoutExtraMaterialsInput>
 }
 
 export type AgentCreateNestedOneWithoutOrdersInput = {
@@ -627,7 +653,8 @@ export type AgentCreateWithoutBankDetailsInput = {
   id_proof?: string | null
   address_proof?: string | null
   createdAt?: Date | string
-  orders?: Prisma.OrdersCreateNestedManyWithoutAgentInput
+  orders?: Prisma.OrderGroupCreateNestedManyWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentUncheckedCreateWithoutBankDetailsInput = {
@@ -645,7 +672,8 @@ export type AgentUncheckedCreateWithoutBankDetailsInput = {
   id_proof?: string | null
   address_proof?: string | null
   createdAt?: Date | string
-  orders?: Prisma.OrdersUncheckedCreateNestedManyWithoutAgentInput
+  orders?: Prisma.OrderGroupUncheckedCreateNestedManyWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialUncheckedCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentCreateOrConnectWithoutBankDetailsInput = {
@@ -678,7 +706,8 @@ export type AgentUpdateWithoutBankDetailsInput = {
   id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrdersUpdateManyWithoutAgentNestedInput
+  orders?: Prisma.OrderGroupUpdateManyWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUpdateManyWithoutAddedByAgentNestedInput
 }
 
 export type AgentUncheckedUpdateWithoutBankDetailsInput = {
@@ -696,7 +725,98 @@ export type AgentUncheckedUpdateWithoutBankDetailsInput = {
   id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrdersUncheckedUpdateManyWithoutAgentNestedInput
+  orders?: Prisma.OrderGroupUncheckedUpdateManyWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUncheckedUpdateManyWithoutAddedByAgentNestedInput
+}
+
+export type AgentCreateWithoutExtraMaterialsInput = {
+  name: string
+  type: string
+  email: string
+  isVerified?: boolean
+  isAvailable?: boolean
+  rating?: number | null
+  address: string
+  pin: string
+  password: string
+  profilepic?: string | null
+  id_proof?: string | null
+  address_proof?: string | null
+  createdAt?: Date | string
+  orders?: Prisma.OrderGroupCreateNestedManyWithoutAgentInput
+  bankDetails?: Prisma.bankDetailsCreateNestedOneWithoutAgentInput
+}
+
+export type AgentUncheckedCreateWithoutExtraMaterialsInput = {
+  id?: number
+  name: string
+  type: string
+  email: string
+  isVerified?: boolean
+  isAvailable?: boolean
+  rating?: number | null
+  address: string
+  pin: string
+  password: string
+  profilepic?: string | null
+  id_proof?: string | null
+  address_proof?: string | null
+  createdAt?: Date | string
+  orders?: Prisma.OrderGroupUncheckedCreateNestedManyWithoutAgentInput
+  bankDetails?: Prisma.bankDetailsUncheckedCreateNestedOneWithoutAgentInput
+}
+
+export type AgentCreateOrConnectWithoutExtraMaterialsInput = {
+  where: Prisma.AgentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgentCreateWithoutExtraMaterialsInput, Prisma.AgentUncheckedCreateWithoutExtraMaterialsInput>
+}
+
+export type AgentUpsertWithoutExtraMaterialsInput = {
+  update: Prisma.XOR<Prisma.AgentUpdateWithoutExtraMaterialsInput, Prisma.AgentUncheckedUpdateWithoutExtraMaterialsInput>
+  create: Prisma.XOR<Prisma.AgentCreateWithoutExtraMaterialsInput, Prisma.AgentUncheckedCreateWithoutExtraMaterialsInput>
+  where?: Prisma.AgentWhereInput
+}
+
+export type AgentUpdateToOneWithWhereWithoutExtraMaterialsInput = {
+  where?: Prisma.AgentWhereInput
+  data: Prisma.XOR<Prisma.AgentUpdateWithoutExtraMaterialsInput, Prisma.AgentUncheckedUpdateWithoutExtraMaterialsInput>
+}
+
+export type AgentUpdateWithoutExtraMaterialsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  pin?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orders?: Prisma.OrderGroupUpdateManyWithoutAgentNestedInput
+  bankDetails?: Prisma.bankDetailsUpdateOneWithoutAgentNestedInput
+}
+
+export type AgentUncheckedUpdateWithoutExtraMaterialsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  pin?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  orders?: Prisma.OrderGroupUncheckedUpdateManyWithoutAgentNestedInput
+  bankDetails?: Prisma.bankDetailsUncheckedUpdateOneWithoutAgentNestedInput
 }
 
 export type AgentCreateWithoutOrdersInput = {
@@ -714,6 +834,7 @@ export type AgentCreateWithoutOrdersInput = {
   address_proof?: string | null
   createdAt?: Date | string
   bankDetails?: Prisma.bankDetailsCreateNestedOneWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentUncheckedCreateWithoutOrdersInput = {
@@ -732,6 +853,7 @@ export type AgentUncheckedCreateWithoutOrdersInput = {
   address_proof?: string | null
   createdAt?: Date | string
   bankDetails?: Prisma.bankDetailsUncheckedCreateNestedOneWithoutAgentInput
+  extraMaterials?: Prisma.extraMaterialUncheckedCreateNestedManyWithoutAddedByAgentInput
 }
 
 export type AgentCreateOrConnectWithoutOrdersInput = {
@@ -765,6 +887,7 @@ export type AgentUpdateWithoutOrdersInput = {
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bankDetails?: Prisma.bankDetailsUpdateOneWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUpdateManyWithoutAddedByAgentNestedInput
 }
 
 export type AgentUncheckedUpdateWithoutOrdersInput = {
@@ -783,6 +906,7 @@ export type AgentUncheckedUpdateWithoutOrdersInput = {
   address_proof?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bankDetails?: Prisma.bankDetailsUncheckedUpdateOneWithoutAgentNestedInput
+  extraMaterials?: Prisma.extraMaterialUncheckedUpdateManyWithoutAddedByAgentNestedInput
 }
 
 
@@ -792,10 +916,12 @@ export type AgentUncheckedUpdateWithoutOrdersInput = {
 
 export type AgentCountOutputType = {
   orders: number
+  extraMaterials: number
 }
 
 export type AgentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orders?: boolean | AgentCountOutputTypeCountOrdersArgs
+  extraMaterials?: boolean | AgentCountOutputTypeCountExtraMaterialsArgs
 }
 
 /**
@@ -812,7 +938,14 @@ export type AgentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  * AgentCountOutputType without action
  */
 export type AgentCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrdersWhereInput
+  where?: Prisma.OrderGroupWhereInput
+}
+
+/**
+ * AgentCountOutputType without action
+ */
+export type AgentCountOutputTypeCountExtraMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.extraMaterialWhereInput
 }
 
 
@@ -833,6 +966,7 @@ export type AgentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   orders?: boolean | Prisma.Agent$ordersArgs<ExtArgs>
   bankDetails?: boolean | Prisma.Agent$bankDetailsArgs<ExtArgs>
+  extraMaterials?: boolean | Prisma.Agent$extraMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.AgentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agent"]>
 
@@ -891,6 +1025,7 @@ export type AgentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type AgentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orders?: boolean | Prisma.Agent$ordersArgs<ExtArgs>
   bankDetails?: boolean | Prisma.Agent$bankDetailsArgs<ExtArgs>
+  extraMaterials?: boolean | Prisma.Agent$extraMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.AgentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AgentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -899,8 +1034,9 @@ export type AgentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $AgentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Agent"
   objects: {
-    orders: Prisma.$OrdersPayload<ExtArgs>[]
+    orders: Prisma.$OrderGroupPayload<ExtArgs>[]
     bankDetails: Prisma.$bankDetailsPayload<ExtArgs> | null
+    extraMaterials: Prisma.$extraMaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1311,8 +1447,9 @@ readonly fields: AgentFieldRefs;
  */
 export interface Prisma__AgentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  orders<T extends Prisma.Agent$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Agent$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bankDetails<T extends Prisma.Agent$bankDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$bankDetailsArgs<ExtArgs>>): Prisma.Prisma__bankDetailsClient<runtime.Types.Result.GetResult<Prisma.$bankDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  extraMaterials<T extends Prisma.Agent$extraMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Agent$extraMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$extraMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1748,23 +1885,23 @@ export type AgentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
  */
 export type Agent$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Orders
+   * Select specific fields to fetch from the OrderGroup
    */
-  select?: Prisma.OrdersSelect<ExtArgs> | null
+  select?: Prisma.OrderGroupSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Orders
+   * Omit specific fields from the OrderGroup
    */
-  omit?: Prisma.OrdersOmit<ExtArgs> | null
+  omit?: Prisma.OrderGroupOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OrdersInclude<ExtArgs> | null
-  where?: Prisma.OrdersWhereInput
-  orderBy?: Prisma.OrdersOrderByWithRelationInput | Prisma.OrdersOrderByWithRelationInput[]
-  cursor?: Prisma.OrdersWhereUniqueInput
+  include?: Prisma.OrderGroupInclude<ExtArgs> | null
+  where?: Prisma.OrderGroupWhereInput
+  orderBy?: Prisma.OrderGroupOrderByWithRelationInput | Prisma.OrderGroupOrderByWithRelationInput[]
+  cursor?: Prisma.OrderGroupWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OrdersScalarFieldEnum | Prisma.OrdersScalarFieldEnum[]
+  distinct?: Prisma.OrderGroupScalarFieldEnum | Prisma.OrderGroupScalarFieldEnum[]
 }
 
 /**
@@ -1784,6 +1921,30 @@ export type Agent$bankDetailsArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.bankDetailsInclude<ExtArgs> | null
   where?: Prisma.bankDetailsWhereInput
+}
+
+/**
+ * Agent.extraMaterials
+ */
+export type Agent$extraMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the extraMaterial
+   */
+  select?: Prisma.extraMaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the extraMaterial
+   */
+  omit?: Prisma.extraMaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.extraMaterialInclude<ExtArgs> | null
+  where?: Prisma.extraMaterialWhereInput
+  orderBy?: Prisma.extraMaterialOrderByWithRelationInput | Prisma.extraMaterialOrderByWithRelationInput[]
+  cursor?: Prisma.extraMaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExtraMaterialScalarFieldEnum | Prisma.ExtraMaterialScalarFieldEnum[]
 }
 
 /**

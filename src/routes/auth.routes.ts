@@ -1,7 +1,16 @@
 import { Router } from "express";
-import { registerUser, loginUser } from "../controllers/user.auth.controller.ts";
-import { registerAdmin, loginAdmin } from "../controllers/admin.auth.controller.ts";
-import { registerAgent, loginAgent } from "../controllers/agent.auth.controller.ts";
+import {
+  registerUser,
+  loginUser,
+} from "../controllers/auth/user.auth.controller.ts";
+import {
+  registerAdmin,
+  loginAdmin,
+} from "../controllers/auth/admin.auth.controller.ts";
+import {
+  registerAgent,
+  loginAgent,
+} from "../controllers/auth/agent.auth.controller.ts";
 
 const router = Router();
 
@@ -18,4 +27,3 @@ router.post("/agent/register", registerAgent);
 router.post("/agent/login", loginAgent);
 
 export default router;
-

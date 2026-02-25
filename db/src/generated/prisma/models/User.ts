@@ -232,7 +232,7 @@ export type UserWhereInput = {
   pin?: Prisma.StringFilter<"User"> | string
   profilepic?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  order?: Prisma.OrdersListRelationFilter
+  order?: Prisma.OrderGroupListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }
 
@@ -244,7 +244,7 @@ export type UserOrderByWithRelationInput = {
   pin?: Prisma.SortOrder
   profilepic?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  order?: Prisma.OrdersOrderByRelationAggregateInput
+  order?: Prisma.OrderGroupOrderByRelationAggregateInput
   notifications?: Prisma.notificationOrderByRelationAggregateInput
 }
 
@@ -259,7 +259,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   pin?: Prisma.StringFilter<"User"> | string
   profilepic?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  order?: Prisma.OrdersListRelationFilter
+  order?: Prisma.OrderGroupListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "email">
 
@@ -298,7 +298,7 @@ export type UserCreateInput = {
   pin: string
   profilepic?: string | null
   createdAt?: Date | string
-  order?: Prisma.OrdersCreateNestedManyWithoutUserInput
+  order?: Prisma.OrderGroupCreateNestedManyWithoutUserInput
   notifications?: Prisma.notificationCreateNestedManyWithoutUserInput
 }
 
@@ -310,7 +310,7 @@ export type UserUncheckedCreateInput = {
   pin: string
   profilepic?: string | null
   createdAt?: Date | string
-  order?: Prisma.OrdersUncheckedCreateNestedManyWithoutUserInput
+  order?: Prisma.OrderGroupUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -321,7 +321,7 @@ export type UserUpdateInput = {
   pin?: Prisma.StringFieldUpdateOperationsInput | string
   profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrdersUpdateManyWithoutUserNestedInput
+  order?: Prisma.OrderGroupUpdateManyWithoutUserNestedInput
   notifications?: Prisma.notificationUpdateManyWithoutUserNestedInput
 }
 
@@ -333,7 +333,7 @@ export type UserUncheckedUpdateInput = {
   pin?: Prisma.StringFieldUpdateOperationsInput | string
   profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrdersUncheckedUpdateManyWithoutUserNestedInput
+  order?: Prisma.OrderGroupUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -522,7 +522,7 @@ export type UserCreateWithoutNotificationsInput = {
   pin: string
   profilepic?: string | null
   createdAt?: Date | string
-  order?: Prisma.OrdersCreateNestedManyWithoutUserInput
+  order?: Prisma.OrderGroupCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -533,7 +533,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   pin: string
   profilepic?: string | null
   createdAt?: Date | string
-  order?: Prisma.OrdersUncheckedCreateNestedManyWithoutUserInput
+  order?: Prisma.OrderGroupUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -559,7 +559,7 @@ export type UserUpdateWithoutNotificationsInput = {
   pin?: Prisma.StringFieldUpdateOperationsInput | string
   profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrdersUpdateManyWithoutUserNestedInput
+  order?: Prisma.OrderGroupUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -570,7 +570,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   pin?: Prisma.StringFieldUpdateOperationsInput | string
   profilepic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrdersUncheckedUpdateManyWithoutUserNestedInput
+  order?: Prisma.OrderGroupUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -602,7 +602,7 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  * UserCountOutputType without action
  */
 export type UserCountOutputTypeCountOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrdersWhereInput
+  where?: Prisma.OrderGroupWhereInput
 }
 
 /**
@@ -668,7 +668,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    order: Prisma.$OrdersPayload<ExtArgs>[]
+    order: Prisma.$OrderGroupPayload<ExtArgs>[]
     notifications: Prisma.$notificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1073,7 +1073,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  order<T extends Prisma.User$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orderArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  order<T extends Prisma.User$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$orderArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1503,23 +1503,23 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
  */
 export type User$orderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Orders
+   * Select specific fields to fetch from the OrderGroup
    */
-  select?: Prisma.OrdersSelect<ExtArgs> | null
+  select?: Prisma.OrderGroupSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Orders
+   * Omit specific fields from the OrderGroup
    */
-  omit?: Prisma.OrdersOmit<ExtArgs> | null
+  omit?: Prisma.OrderGroupOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OrdersInclude<ExtArgs> | null
-  where?: Prisma.OrdersWhereInput
-  orderBy?: Prisma.OrdersOrderByWithRelationInput | Prisma.OrdersOrderByWithRelationInput[]
-  cursor?: Prisma.OrdersWhereUniqueInput
+  include?: Prisma.OrderGroupInclude<ExtArgs> | null
+  where?: Prisma.OrderGroupWhereInput
+  orderBy?: Prisma.OrderGroupOrderByWithRelationInput | Prisma.OrderGroupOrderByWithRelationInput[]
+  cursor?: Prisma.OrderGroupWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OrdersScalarFieldEnum | Prisma.OrdersScalarFieldEnum[]
+  distinct?: Prisma.OrderGroupScalarFieldEnum | Prisma.OrderGroupScalarFieldEnum[]
 }
 
 /**

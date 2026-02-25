@@ -16,120 +16,161 @@ enum status {
   CANCELLED
 }
 
-
-enum payment {
-  COD
+enum paymentMethod {
+  CASH
   ONLINE
 }
 
+enum paymentStatus {
+  PENDING
+  PAID
+  PARTIALLY_PAID
+  REFUNDED
+}
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  address   String
-  pin       String
-  order    Orders[]
-  profilepic String?
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  address       String
+  pin           String
+  order         OrderGroup[]
+  profilepic    String?
   notifications notification[]
 
   createdAt DateTime @default(now())
 }
 
 model bankDetails {
-  id        Int      @id @default(autoincrement())
+  id            Int    @id @default(autoincrement())
   accountNumber String
-  holderName   String
-  ifscCode     String
-  bankName     String
-  agentId      Int @unique
-  agent        Agent? @relation(fields: [agentId], references: [id])
+  holderName    String
+  ifscCode      String
+  bankName      String
+  agentId       Int    @unique
+  agent         Agent? @relation(fields: [agentId], references: [id])
 
   createdAt DateTime @default(now())
 }
 
-
-
-
 model Agent {
-  id        Int      @id @default(autoincrement())
-  name      String
-  type     String
-  email     String   @unique
-  isVerified Boolean  @default(false)
-  isAvailable Boolean  @default(true)
-  rating    Float?   @default(0)
-  
-  address   String
-  pin       String
-  password  String
-  orders    Orders[]
-  bankDetails bankDetails?
-  profilepic String?
-  id_proof String?
-  address_proof String?
+  id          Int     @id @default(autoincrement())
+  name        String
+  type        String
+  email       String  @unique
+  isVerified  Boolean @default(false)
+  isAvailable Boolean @default(true)
+  rating      Float?  @default(0)
+
+  address        String
+  pin            String
+  password       String
+  orders         OrderGroup[]
+  bankDetails    bankDetails?
+  extraMaterials extraMaterial[]
+  profilepic     String?
+  id_proof       String?
+  address_proof  String?
 
   createdAt DateTime @default(now())
 }
 
 model Admin {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
 
   createdAt DateTime @default(now())
 }
 
 model subservice {
-  id        Int      @id @default(autoincrement())
-  name      String
-  price     Float?
+  id          Int     @id @default(autoincrement())
+  name        String
+  price       Float?
   description String?
-  createdAt DateTime @default(now())
-}
 
+  createdAt DateTime @default(now())
+  orders    Orders[]
+}
+// how do you track the user has approved and paid you or not ? 
 
 model extraMaterial {
-  id        Int      @id @default(autoincrement())
-  name      String
-  quantity  Int
-  price     Float?
+  id          Int     @id @default(autoincrement())
+  name        String
+  quantity    Int
+  price       Float
   description String?
-  createdAt DateTime @default(now())
-   ordersId Int?
 
-  orders Orders? @relation(fields: [ordersId], references: [id])
- 
+  groupId    Int
+  orderGroup OrderGroup @relation(fields: [groupId], references: [id])
+
+  addedByAgentId Int
+  addedByAgent   Agent @relation(fields: [addedByAgentId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([groupId])
 }
 
+model OrderGroup {
+  id             Int             @id @default(autoincrement())
+  userId         Int
+  status         status          @default(PENDING)
+  paymentStatus  paymentStatus   @default(PENDING)
+  name           String?
+  totalPrice     Float?
+  description    String?
+  createdAt      DateTime        @default(now())
+  servicetime    DateTime
+  orders         Orders[]
+  payments       Payment[]
+  extraMaterials extraMaterial[]
+  agentId        Int?
+  user           User            @relation(fields: [userId], references: [id])
+  agent          Agent?          @relation(fields: [agentId], references: [id])
+
+  @@index([userId, createdAt, id])
+  @@index([userId])
+  @@index([agentId])
+}
 
 model Orders {
-id       Int    @id @default(autoincrement())
-userId   Int
-user     User @relation(fields: [userId], references: [id])
+  id           Int         @id @default(autoincrement())
+  subserviceId Int
+  subservice   subservice  @relation(fields: [subserviceId], references: [id])
+  groupId      Int?
+  orderGroup   OrderGroup? @relation(fields: [groupId], references: [id])
 
-mode    payment
-status  status @default(PENDING)
-serviceCharge Float
-gst Float?
-servicetime  DateTime
-createdAt DateTime @default(now())
-agentId Int?
-agent   Agent? @relation(fields: [agentId], references: [id])
-extraMaterial extraMaterial[]
-@@index([agentId])
-@@index([status])
-@@index([userId])
+  serviceCharge Float
+ 
 
+  createdAt DateTime @default(now())
+
+  // considering only order from the subservice
+  @@index([groupId])
+  @@index([subserviceId])
+}
+// how do you track for the payment for the extra material ? 
+// sptyro 2 6 
+model Payment {
+  id            Int           @id @default(autoincrement())
+  groupId       Int
+  orderGroup    OrderGroup    @relation(fields: [groupId], references: [id])
+  amount        Float
+  method        paymentMethod
+  transactionId String?
+  note          String?
+  createdAt     DateTime      @default(now())
+
+  @@index([groupId])
 }
 
 model notification {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  user      User @relation(fields: [userId], references: [id])
-  message   String
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  message     String
   description String?
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
 }
-
